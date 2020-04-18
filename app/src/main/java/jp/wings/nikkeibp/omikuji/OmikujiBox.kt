@@ -26,7 +26,7 @@ class OmikujiBox : Animation.AnimationListener {
 
     lateinit var omikujiView: ImageView
     var finish = false // 箱から出たか？
-    var number : Int = -1 // くじ番号（0～19の乱数）
+    val number: Int // くじ番号（0～19の乱数）
 
     get() {
         val rnd = Random()
