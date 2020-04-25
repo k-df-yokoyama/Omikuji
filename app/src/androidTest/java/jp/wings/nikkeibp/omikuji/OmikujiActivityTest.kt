@@ -81,7 +81,10 @@ class OmikujiActivityTest {
          */
 
         val valueAfter = pref.getBoolean("button", false)
-        //assertThat(valueAfter)isEquatTo(!valueBefore)
+        assertNotEquals(valueAfter, valueBefore)
+        println("valueBefore = " + valueBefore)
+        println("valueAfter = " + valueAfter)
+        //assertThat(valueAfter, is(true))
 
         if (valueBefore) {
             onView(withText("うらなう"))
