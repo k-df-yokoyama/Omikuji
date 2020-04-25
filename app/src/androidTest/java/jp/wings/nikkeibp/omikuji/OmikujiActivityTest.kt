@@ -86,7 +86,7 @@ class OmikujiActivityTest {
         println("valueAfter = " + valueAfter)
         //assertThat(valueAfter, is(true))
 
-        // TODO: [戻る]ボタンをクリックしたときに「うらなうボタン表示／非表示」の設定値に応じて[うらなう]ボタンが表示されるようにしたい。
+        // INFO: [戻る]ボタンをクリックしたときに「うらなうボタン表示／非表示」の設定値に応じて[うらなう]ボタンの表示が変わらないのは仕様。
         if (valueBefore) {
             onView(withText("うらなう"))
                 //onView(withId(R.id.button))
