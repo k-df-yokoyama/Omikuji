@@ -19,6 +19,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        androidTest {
+            manifest.srcFile 'src/androidTest/AndroidManifest.xml'
+        }
+    }
 }
 
 dependencies {
@@ -35,6 +40,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     // Hamcrest library
     androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
-    // Espresso dependencies// Espresso dependencies
+    // Espresso dependencies
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //UI testing with UI Automator
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }

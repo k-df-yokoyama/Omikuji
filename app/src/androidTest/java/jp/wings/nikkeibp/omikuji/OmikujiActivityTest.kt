@@ -2,15 +2,12 @@ package jp.wings.nikkeibp.omikuji
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.preference.PreferenceManager
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
+import androidx.test.espresso.Espresso.*
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
+import androidx.test.espresso.matcher.ViewMatchers.*
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -18,14 +15,21 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
-import org.junit.Rule
 import androidx.test.rule.*
+import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
+import androidx.test.uiautomator.UiDevice
+import org.junit.*
+
 
 @RunWith(AndroidJUnit4::class)
 class OmikujiActivityTest {
+    private lateinit var device: UiDevice
 
     @get:Rule
     val activityRule = ActivityTestRule(OmikujiActivity::class.java)
+
+    //val pref = PreferenceManager.getDefaultSharedPreferences(this)
+    //val value = pref.getBoolean("button", false)
 
     @Before
     fun setUp() {
@@ -44,10 +48,41 @@ class OmikujiActivityTest {
 
         // Click the item.
         onView(withText("設定"))
+        //onView(withText("おみくじアプリについて"))
+            .perform(click())
+        /*
+        // 以下のコードは使えない（テストが失敗する）
+        onView(withId(R.id.item1))
+            .perform(click())
+         */
+
+        onView(withText("ボタン表示のあり／なしを切り替えます"))
+            .perform(click())
+        /*
+        // 以下のコードは使えない（テストが失敗する）
+        onView(withId(R.id.button))
+            .perform(click())
+         */
+
+        // 戻るボタンをクリックする
+        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+        device.pressBack()
+
+        //onView(isRoot()).perform(pressBack())
+
+        /*
+        // Then "press" the back button (in the ui thread of the app under test)
+        activityRule.runOnUiThread(Runnable {
+            activityRule.getActivity().onBackPressed()
+        })
+         */
+
+        onView(withText("うらなう"))
+        //onView(withId(R.id.button))
             .perform(click())
     }
 
-    @Test
+    @Ignore
     fun onButtonClick() {
         /*
         activityRule.launchActivity(Intent())
@@ -56,11 +91,12 @@ class OmikujiActivityTest {
          */
     }
 
-    @Test
+    @Ignore
     fun onOptionsItemSelected() {
     }
 
-    @Test
+    @Ignore
     fun onTouchEvent() {
     }
 }
+
