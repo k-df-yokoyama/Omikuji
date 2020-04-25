@@ -28,8 +28,8 @@ class OmikujiActivityTest {
     @get:Rule
     val activityRule = ActivityTestRule(OmikujiActivity::class.java)
 
-    //val pref = PreferenceManager.getDefaultSharedPreferences(this)
-    //val value = pref.getBoolean("button", false)
+    val context = ApplicationProvider.getApplicationContext<Context>()
+    //val context = InstrumentationRegistry.getInstrumentation().targetContext
 
     @Before
     fun setUp() {
@@ -41,6 +41,9 @@ class OmikujiActivityTest {
 
     @Test
     fun testActionBarOverflow() {
+        val pref = PreferenceManager.getDefaultSharedPreferences(context)
+        val valueBefore = pref.getBoolean("button", false)
+
         // Open the options menu OR open the overflow menu, depending on whether
         // the device has a hardware or software overflow menu button.
         openActionBarOverflowOrOptionsMenu(
@@ -77,9 +80,14 @@ class OmikujiActivityTest {
         })
          */
 
-        onView(withText("うらなう"))
-        //onView(withId(R.id.button))
-            .perform(click())
+        val valueAfter = pref.getBoolean("button", false)
+        //assertThat(valueAfter)isEquatTo(!valueBefore)
+
+        if (valueBefore) {
+            onView(withText("うらなう"))
+                //onView(withId(R.id.button))
+                .perform(click())
+        }
     }
 
     @Ignore
