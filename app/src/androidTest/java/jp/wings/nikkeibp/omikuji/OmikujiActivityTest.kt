@@ -1,5 +1,13 @@
 package jp.wings.nikkeibp.omikuji
 
+import android.content.Context
+import android.content.Intent
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -25,6 +33,27 @@ class OmikujiActivityTest {
 
     @After
     fun tearDown() {
+    }
+
+    @Test
+    fun testActionBarOverflow() {
+        // Open the options menu OR open the overflow menu, depending on whether
+        // the device has a hardware or software overflow menu button.
+        openActionBarOverflowOrOptionsMenu(
+            ApplicationProvider.getApplicationContext<Context>())
+
+        // Click the item.
+        onView(withText("設定"))
+            .perform(click())
+    }
+
+    @Test
+    fun onButtonClick() {
+        /*
+        activityRule.launchActivity(Intent())
+        onView(withId(R.id.button))
+            .perform(click())
+         */
     }
 
     @Test

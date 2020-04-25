@@ -33,6 +33,8 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.2.0'
     // Assertions
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    // Hamcrest library
+    androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
     // Espresso dependencies// Espresso dependencies
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
